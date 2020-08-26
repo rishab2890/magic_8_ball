@@ -6,8 +6,7 @@ void main() {
     MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Ask Me Anything'
-          ),
+          title: Text('Ask Me Anything'),
           backgroundColor: Colors.black12,
         ),
         body: DecisionPage(),
@@ -15,30 +14,31 @@ void main() {
     ),
   );
 }
+
 class DecisionPage extends StatefulWidget {
   @override
   _DecisionPageState createState() => _DecisionPageState();
 }
 
 class _DecisionPageState extends State<DecisionPage> {
+  int ballno = 1;
+
   @override
   Widget build(BuildContext context) {
-    int ballno;
     return Center(
-      child: Expanded(
-        child: FlatButton(
-          child: Image(
-            image: AssetImage('images/ball$ballno.png'),
+      child: Row(
+        children: [
+          Expanded(
+            child: FlatButton(
+                child: Image.asset('images/ball$ballno.png'),
+                onPressed: () {
+                  setState(() {
+                    ballno = Random().nextInt(5) + 1;
+                  });
+                }),
           ),
-          onPressed:() {
-            setState(() {
-              ballno = Random().nextInt(5)+1;
-            }
-            );
-          }
-        ),
+        ],
       ),
     );
   }
 }
-
